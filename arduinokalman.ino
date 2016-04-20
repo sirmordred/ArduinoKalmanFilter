@@ -14,6 +14,8 @@
     float dt;  ////// elapsed time secs
     float *pZ;
     float *pV;
+    
+    float za;
 
     float z_;  // position
     float v_;  // velocity
@@ -44,6 +46,7 @@
     float Paa_ = 100000.0f;
     float w = 0;
     float ret = 0;
+    float scalefactor = 980.0f;
 
 //Setup
 
@@ -60,10 +63,6 @@
     float fgx; //////////////////////sensors///////////////////
     float fgy; ///////////////////sensor///////////////////
     float fgz; /////////////////////sensor/////////////////
-
-    float za;
-    float accelraw;
-    float scalefactor = 980.0f;
 
     float fa = sqrt(fax*fax + fay*fay + faz*faz); 
     int bUseAccel = ((fa > 0.5f) && (fa < 1.5f)) ? 1 : 0;
@@ -182,9 +181,7 @@
     za = 2.0f*(q[1]*q[3] - q[0]*q[2])*ax + 2.0f*(q[0]*q[1] + q[2]*q[3])*ay + 
 (q[0]*q[0] - q[1]*q[1] - q[2]*q[2] + q[3]*q[3])*az - 1.0f;
 
-    accelraw = scalefactor*za;
-
-    a = accelraw;
+    a = scalefactor*za;
 
     // Predict state
     float accel = a - aBias_;
