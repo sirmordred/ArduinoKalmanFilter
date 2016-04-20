@@ -5,7 +5,7 @@ float beta = 0.6f;
 float zVariance = 500.0f;
 float zAccelVariance = 1.0f;
 float zAccelBiasVariance = 1.0f; 
-float zInitial = 300; // comes from pressure sensor
+float zInitial;
 float vInitial = 0.0f;
 float aBiasInitial = 0.0f;
 
@@ -119,6 +119,10 @@ float kv;
 float ka;
 
 void setup() {
+
+/*
+    zInitial = ///////////////sensor read(initial altitude)/////////////
+*/
 
     zAccelVariance_ = zAccelVariance;
     zAccelBiasVariance_ = zAccelBiasVariance;
