@@ -103,7 +103,6 @@ float _2q2mx;
 float _4bx;
 float _4bz;
 
-
 float _2q1;
 float _2q2;
 float _2q3;
@@ -136,6 +135,8 @@ float sInv;
 float kz; 
 float kv;
 float ka;
+
+#define PI_DIV_180 0.0174533
 
 void setup() {
 
@@ -181,9 +182,9 @@ void loop() {
     my = fmy;
     mz = fmz;
 
-    gx = fgx;  //*PI_DIV_180;
-    gy = fgy;  //*PI_DIV_180;
-    gz = fgz;  //*PI_DIV_180;
+    gx = fgx*PI_DIV_180;
+    gy = fgy*PI_DIV_180;
+    gz = fgz*PI_DIV_180;
 
     // Compute rate of change of quaternion
     qDot1 = 0.5f * (-q2 * gx - q3 * gy - q4 * gz);
@@ -192,7 +193,6 @@ void loop() {
     qDot4 = 0.5f * (q1 * gz + q2 * gy - q3 * gx);
 
    if (bUseAccel) {
-
     _2q1 = 2.0f * q1;
     _2q2 = 2.0f * q2;
     _2q3 = 2.0f * q3;
@@ -210,7 +210,6 @@ void loop() {
     q3q3 = q3 * q3;
     q3q4 = q3 * q4;
     q4q4 = q4 * q4;
-
 
     // Normalise accelerometer measurement
     norm = sqrt(ax * ax + ay * ay + az * az);
